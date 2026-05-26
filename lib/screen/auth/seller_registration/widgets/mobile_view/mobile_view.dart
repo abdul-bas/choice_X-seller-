@@ -30,145 +30,44 @@ class SellerRegistrationMobileHeader extends StatelessWidget {
             builder: (c) => SafeArea(
               bottom: false,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 16, 20, 22),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Row(children: [
-                      const Spacer(),
-                      StepBadge(
-                        current: c.step + 1,
-                        total: sellerRegistrationSteps.length,
-                      ),
-                    ]),
-                    const SizedBox(height: 24),
-
-                    Row(
-                      children: List.generate(
-                        sellerRegistrationSteps.length,
-                        (i) {
-                          final isDone   = i < c.step;
-                          final isActive = i == c.step;
-                          return Expanded(
-                            child: GestureDetector(
-                              onTap: () => c.goTo(i),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  right: i < sellerRegistrationSteps.length - 1
-                                      ? 6 : 0,
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    AnimatedContainer(
-                                      duration: const Duration(milliseconds: 350),
-                                      curve: Curves.easeOutCubic,
-                                      height: isActive ? 5 : 3,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(99),
-                                        gradient: LinearGradient(
-                                          colors: isDone
-                                              ? [
-                                                  AppColors.sellerAccentGreen,
-                                                  AppColors.sellerAccentGreen
-                                                      .withValues(alpha: 0.55),
-                                                ]                            
-                                              : isActive
-                                                  ? [AppColors.brand, AppColors.brand] 
-                                                  : [
-                                                      AppColors.sellerStepInactive,
-                                                      AppColors.sellerStepInactive,
-                                                    ], 
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 7),
-                                    Row(
-                                      children: [
-                                        if (isDone)
-                                          const Icon(
-                                            Icons.check_rounded,
-                                            color: AppColors.sellerAccentGreen,
-                                            size: 10,
-                                          )
-                                        else
-                                          Icon(
-                                            sellerRegistrationSteps[i].icon,
-                                            size: 10,
-                                            color: isActive
-                                                ? AppColors.brand        
-                                                : AppColors.sellerStepInactive, 
-                                          ),
-                                        const SizedBox(width: 4),
-                                        Flexible(
-                                          child: Text(
-                                            sellerRegistrationSteps[i].tag,
-                                            style: TextStyle(
-                                              fontSize: 9,
-                                              fontWeight: FontWeight.w900,
-                                              color: isActive
-                                                  ? AppColors.brand          
-                                                  : isDone
-                                                      ? AppColors.sellerAccentGreen
-                                                          .withValues(alpha: 0.7) 
-                                                      : AppColors.sellerStepInactive, 
-                                              letterSpacing: 0.8,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            sellerRegistrationSteps[c.step].tag,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w900,
+                              color: AppColors.sellerWhite70,
+                              letterSpacing: 2.0,
                             ),
-                          );
-                        },
-                      ),
-                    ),
-
-                    const SizedBox(height: 20),
-
-                   
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                sellerRegistrationSteps[c.step].tag,
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w900,
-                                  color: AppColors.sellerWhite70,
-                                  letterSpacing: 2.0,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                sellerRegistrationSteps[c.step].title,
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w900,
-                                  color: AppColors.sellerHeading, 
-                                  letterSpacing: -0.6,
-                                  height: 1.1,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                sellerRegistrationSteps[c.step].subtitle,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: AppColors.sellerSubtitle, 
-                                ),
-                              ),
-                            ],
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 5),
+                          Text(
+                            sellerRegistrationSteps[c.step].title,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w900,
+                              color: AppColors.sellerHeading, 
+                              letterSpacing: -0.6,
+                              height: 1.1,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            sellerRegistrationSteps[c.step].subtitle,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: AppColors.sellerSubtitle, 
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

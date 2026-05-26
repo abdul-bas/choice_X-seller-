@@ -9,10 +9,16 @@ class ProductCrudRepository {
 
   Future<ProductCrudState> addProduct({required ProductModel model}) async {
     try {
+ print('images: ${model.imges}');
+    print('variants: ${model.variants}');
+
+    final data = model.toMap();
+
+    print('Firestore data: $data');
       await _firebaseFirestore
           .collection('product')
           .doc(model.id)
-          .set(model.toMap());
+          .set(model.toMap(),SetOptions(merge: true));
 
       return ProductLoaded(
         message: "Product added successfully!",

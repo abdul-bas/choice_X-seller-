@@ -4,7 +4,8 @@ import 'package:choice_x_seller/state/get_x/filterProducts.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-class AddProductController extends GetxController {
+
+class  AddProductController extends GetxController {
   ProductModel? product;
 
   final cName = TextEditingController();
@@ -17,11 +18,12 @@ class AddProductController extends GetxController {
   final formKey = GlobalKey<FormState>();
 
   final Set<String> selectedConn = {};
+  int propartyIndex = 0;
 
   bool isSearchOpen = false;
 
-  String mfgDate = '';
-  String addedDate = '';
+  DateTime? mfgDate;
+  DateTime? addedDate;
 
   String? brand;
   String? category;
@@ -53,8 +55,8 @@ class AddProductController extends GetxController {
 
     selectedConn.clear();
 
-    mfgDate = '';
-    addedDate = '';
+    mfgDate = null;
+    addedDate = null;
 
     brand = null;
     category = null;
@@ -66,8 +68,6 @@ class AddProductController extends GetxController {
     images.clear();
 
     isSearchOpen = false;
-
-   
   }
 
   @override
@@ -168,15 +168,11 @@ class AddProductController extends GetxController {
 
     if (d == null) return;
 
-    final s =
-        '${d.day.toString().padLeft(2, '0')}/'
-        '${d.month.toString().padLeft(2, '0')}/${d.year}';
-
     if (isMfg) {
-      mfgDate = s;
+      mfgDate = d;
       update(['mfgDate']);
     } else {
-      addedDate = s;
+      addedDate = d;
       update(['addedDate']);
     }
   }
@@ -184,8 +180,7 @@ class AddProductController extends GetxController {
   Future<void> fileUplod(
     BuildContext context,
   ) async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: true,
       withData: true,
     );
@@ -193,8 +188,7 @@ class AddProductController extends GetxController {
     if (result != null) {
       for (var file in result.files) {
         if (images.length >= 5) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text(
                 'You can only upload up to 5 images.',
@@ -240,12 +234,12 @@ class AddProductController extends GetxController {
     category = product.category;
     productType = product.productType;
     warranty = product.warranty;
-    delivery =
-        product.expectedDeliveryDays.toString();
+    delivery = product.expectedDeliveryDays.toString();
 
     variants = List.from(product.variants);
     images = List.from(product.imges);
 
     update();
   }
+  
 }

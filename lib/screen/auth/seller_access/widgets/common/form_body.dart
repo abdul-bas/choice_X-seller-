@@ -74,7 +74,7 @@ Widget sellerAccessFormBody(
                   style: TextStyle(
                     fontSize: isTab ? 12 : 11,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.brand,
+                    color: AppColors.white45,
                   ),
                 ),
               ),
@@ -106,21 +106,36 @@ Widget sellerAccessFormBody(
           ),
           SizedBox(height: isTab ? 32 : 28),
 
-          
-          SizedBox(
-            height: isTab ? 52 : 44,
-            child: AuthButton(
-              color: AppColors.brandGradient1,
-              width: double.infinity,
-              text: 'Sign In',
-              function: () =>AuthController. submitSellerSignIn(
-                formKey: formKey,
-                email: email0.text.trim(),
-                password: password0.text.trim(),
-                context: context,
-              ),
+          SizedBox(width: double.infinity,height: 50,
+            child: ElevatedButton.icon(
+              
+                    onPressed:  () =>AuthController. submitSellerSignIn(
+                  formKey: formKey,
+                  email: email0.text.trim(),
+                  password: password0.text.trim(),
+                  context: context,
+                ),
+                    icon: const Icon(Icons.lock_outline, size: 18, color: Colors.white),
+                    label: const Text(
+            'Sign in',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
             ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.brand,
+            padding: const EdgeInsets.symmetric(horizontal: 28),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            elevation: 0,
+                    ),
+                  ),
           ),
+  
+         
           const SizedBox(height: 24),
 
        

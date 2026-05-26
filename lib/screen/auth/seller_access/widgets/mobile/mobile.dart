@@ -13,59 +13,59 @@ Widget buildSellerAccessMobile(
   GlobalKey<FormState> formKey,
   Obscure obscure,
 ) {
-  return Column(
-    children: [
-    
-      Container(
-        width: double.infinity,
-        decoration:  BoxDecoration(
-          gradient:AuthController. sellerHeroPanelGradient(),
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(32)),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 20, 24, 32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SellerPortalBadge(
-                  dotColor: AppColors.white70,
-                  badgeBg: AppColors.white.withValues(alpha: 0.12),
-                  badgeBorder: AppColors.white.withValues(alpha: 0.25),
-                  label: 'CHOICEX SELLER',
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Welcome\nback.',
-                  style: TextStyle(
-                    fontSize: 34,
-                    fontWeight: FontWeight.w900,
-                    color: AppColors.white,
-                    height: 1.1,
-                    letterSpacing: -0.8,
+  return SingleChildScrollView(
+    child: Column(
+      children: [
+      
+        Container(
+          width: double.infinity,
+          decoration:  BoxDecoration(
+            gradient:AuthController. sellerHeroPanelGradient(),
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(32)),
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(24, 20, 24, 32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SellerPortalBadge(
+                    dotColor: AppColors.white70,
+                    badgeBg: AppColors.white.withValues(alpha: 0.12),
+                    badgeBorder: AppColors.white.withValues(alpha: 0.25),
+                    label: 'CHOICEX SELLER',
                   ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'Sign in to manage your store',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: AppColors.white.withValues(alpha: 0.40),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Welcome\nback.',
+                    style: TextStyle(
+                      fontSize: 34,
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.white,
+                      height: 1.1,
+                      letterSpacing: -0.8,
+                    ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 10),
+                  Text(
+                    'Sign in to manage your store',
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.white.withValues(alpha: 0.40),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-
-      Expanded(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 32, 20, 40),
+    
+        Padding(
+          padding: const EdgeInsets.all(15),
           child: sellerAccessFormBody(
               context, email0, password0, formKey, obscure, false),
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }

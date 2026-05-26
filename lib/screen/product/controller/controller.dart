@@ -2,6 +2,8 @@ import 'package:choice_x_seller/core/utils/helpers/id_generator.dart';
 import 'package:choice_x_seller/core/utils/snackbar/error_snackbar.dart';
 import 'package:choice_x_seller/models/product_model/product_model.dart';
 import 'package:choice_x_seller/repository/auth_repository/repository.dart';
+import 'package:choice_x_seller/screen/product/create_product/widgets/basic_details/basic_deails.dart';
+import 'package:choice_x_seller/screen/product/create_product/widgets/section_card/section_card.dart';
 import 'package:choice_x_seller/screen/product/edit_product/edit_product.dart';
 import 'package:choice_x_seller/screen/product/product_detail_page/product_detail_page.dart';
 import 'package:choice_x_seller/state/bloc/product_add/product_crud_bloc.dart';
@@ -206,7 +208,7 @@ class ProductLogic {
       return;
     }
 
-    if (c.mfgDate.isEmpty || c.addedDate.isEmpty) {
+    if (c.mfgDate == null || c.addedDate == null) {
       showError(
         'Please select manufacture and added date',
         context,
@@ -249,18 +251,21 @@ class ProductLogic {
       description: c.cDesc.text.trim(),
       category: c.category!,
       productType: c.productType!,
-      connectivityOptions: c.selectedConn.toList(),
+      connectivityOptions: List.from(
+        c.selectedConn,
+      ),
       warranty: c.warranty!,
       size: c.cSize.text.trim(),
       tag: c.cTags.text.trim(),
-      manufactureDate: c.mfgDate,
-      addedDate: c.addedDate,
+      manufactureDate: c.mfgDate ?? DateTime.now(),
+      addedDate: c.addedDate ?? DateTime.now(),
       status: 'Live',
-      imges: c.images,
+      imges: List<String>.from(c.images),
       weight: c.cWeight.text.trim(),
-      variants: c.variants,
+      variants: List<Map<String, dynamic>>.from(
+        c.variants,
+      ),
     );
-
     context.read<ProductCrudBloc>().add(
           AddProduct(model: productModel),
         );
@@ -300,9 +305,12 @@ class ProductLogic {
     final delivery = c.delivery;
     final images = c.images;
     final variants = c.variants;
-    final mfgDate = c.mfgDate.trim();
-    final addedDate = c.addedDate.trim();
-
+    final mfgDate = c.mfgDate;
+    final addedDate = c.addedDate;
+    if(c.cName.text.isNotEmpty&&c.brand.isNotEmpty&&c.cModel){
+      c.pro
+    }
+//......................................................
     if (brand == null ||
         category == null ||
         productType == null ||
@@ -312,7 +320,7 @@ class ProductLogic {
       return;
     }
 
-    if (mfgDate.isEmpty || addedDate.isEmpty) {
+    if (mfgDate == null || addedDate == null) {
       showError(
         'Please select manufacture and added date',
         context,
@@ -358,7 +366,7 @@ class ProductLogic {
       size: c.cSize.text.trim(),
       tag: c.cTags.text.trim(),
       manufactureDate: mfgDate,
-      addedDate: addedDate,
+      addedDate: DateTime.now(),
       status: product.status,
       imges: images,
       weight: c.cWeight.text.trim(),
@@ -394,4 +402,8 @@ class ProductLogic {
       ),
     );
   }
+
+
+
+ 
 }

@@ -1,4 +1,5 @@
 import 'package:choice_x_seller/core/constants/app_colors.dart';
+import 'package:choice_x_seller/core/utils/helpers/date_formatter.dart';
 import 'package:choice_x_seller/models/product_model/product_model.dart';
 import 'package:choice_x_seller/screen/product/product_detail_page/widgets/spec_row.dart';
 import 'package:flutter/material.dart';
@@ -94,8 +95,8 @@ class SpecificationDetailsSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          specRow("Manufacture Date", product.manufactureDate),
-          specRow("Added Date",       product.addedDate),
+          specRow("Manufacture Date",formatDate(product.manufactureDate)),
+          specRow("Added Date",      formatDate(product.addedDate)),
           const SizedBox(height: 30),
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:choice_x_seller/config/app_bar_configs.dart';
 
 import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/core/utils/helpers/get_spots.dart';
+import 'package:choice_x_seller/core/widgets/animation/fad_slide_animation.dart';
 import 'package:choice_x_seller/core/widgets/app_bar/app_bar.dart';
 import 'package:choice_x_seller/screen/seller_dashboard/controller/trigger_animation.dart';
 import 'package:choice_x_seller/screen/seller_dashboard/widgets/desk_top_view/desk_top_view.dart';
@@ -15,7 +16,6 @@ import 'package:choice_x_seller/state/get_x/seller_order_controller.dart';
 import 'package:choice_x_seller/state/get_x/stat_filter_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -106,19 +106,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
    
   
     return SafeArea(
-      child: TweenAnimationBuilder<double>(
-        tween: Tween(begin: 0.0, end: 1.0),
-        duration: const Duration(milliseconds: 800),
-        curve: Curves.easeOutCubic,
-        builder: (_, value, child) {
-          return Opacity(
-            opacity: value,
-            child: Transform.translate(
-              offset: Offset(0, 50 * (1 - value)),
-              child: child,
-            ),
-          );
-        },
+      child: FadeSlideAnimation(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -151,8 +139,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: GetBuilder<SellerOrderController>(
                       builder: (controller) {
                           if (controller.totalRevenue == 0) {
-      return EmptyRevenueState();
-    }
+              return EmptyRevenueState();
+            }
                         return GetBuilder<ArcProgressController>(
                           builder: (_) {
                             return widget.isDesk
