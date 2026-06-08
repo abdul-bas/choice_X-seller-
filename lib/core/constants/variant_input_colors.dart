@@ -1,0 +1,23 @@
+
+const variantColors = [
+  'Red',
+  'Blue',
+  'Green',
+  'Yellow',
+  'Orange',
+  'Purple',
+  'Pink',
+  'Brown',
+  'Black',
+  'White',
+  'Grey',
+  'Cyan',
+  'Magenta',
+  'Teal',
+  'Indigo',
+  'Lime',
+  'Amber',
+  'Maroon',
+  'Olive',
+  'Navy',
+];

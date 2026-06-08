@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "choicex-8590",
+    "build/web": "choicex-8590",
+    "prod": "choicex-8590"
+  },
+  "targets": {
+    "choicex-8590": {
+      "hosting": {
+        "seller": [
+          "choice8590-seller"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
