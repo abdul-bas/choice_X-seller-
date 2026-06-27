@@ -1,5 +1,6 @@
-import 'package:audio_waveforms/audio_waveforms.dart';
+
 import 'package:choice_x_seller/core/constants/app_colors.dart';
+import 'package:choice_x_seller/screen/chat/widgets/chat_area_panel/recording_wave.dart';
 import 'package:choice_x_seller/screen/chat/widgets/chat_area_panel/audio_preview_bar.dart';
 import 'package:choice_x_seller/screen/chat/widgets/chat_area_panel/mic_button.dart';
 import 'package:choice_x_seller/screen/chat/widgets/chat_area_panel/send_button.dart';
@@ -36,50 +37,40 @@ class InputBar extends StatelessWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              IconButton(
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-                onPressed: c.toggleEmoji,
-                icon: const Icon(Icons.tag_faces_outlined,
-                    size: 22, color: AppColors.textSubdued),
-              ),
+              if (!c.isRecording)
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: c.toggleEmoji,
+                  icon: const Icon(Icons.tag_faces_outlined,
+                      size: 22, color: AppColors.textSubdued),
+                ),
               const SizedBox(width: 2),
-              IconButton(
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-                onPressed: c.toggleFileUploadMenu,
-                icon: const Icon(Icons.attach_file,
-                    size: 22, color: AppColors.textSubdued),
-              ),
-              const SizedBox(width: 8),
+              if (!c.isRecording)
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: c.toggleFileUploadMenu,
+                  icon: const Icon(Icons.attach_file,
+                      size: 22, color: AppColors.textSubdued),
+                ),
+              if (!c.isRecording) const SizedBox(width: 8),
               Expanded(
                 child: GetBuilder<ChatController>(
-                    id:['audioPreview', 'messageCtrl'],
-                    builder: (controller) {
-                      if (controller.isRecording) {
-                        return  Container(
-                            height: 45,
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            decoration: BoxDecoration(
-                              color: AppColors.brand.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            child: Flexible(
-                              child: AudioWaveforms(
-                                enableGesture: false,
-                                size: Size(
-                                    MediaQuery.of(context).size.width - 10, 45),
-                                recorderController: controller.recorderController,
-                                waveStyle: const WaveStyle(
-                                  waveColor: AppColors.white,
-                                  extendWaveform: true,
-                                  showMiddleLine: false,
-                                  waveThickness: 3,
-                                  spacing: 4,
-                                ),
-                              ),
-                            ),
-                          );
+                    id: ['audioPreview', 'messageCtrl'],
+                    builder: (j) {
+                      if (c.isRecording) {
+                        return Container(
+                          padding: EdgeInsets.symmetric(vertical: 2,horizontal: 2),
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: AppColors.black,
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          child: ClipRRect(  borderRadius: BorderRadius.circular(24),
+                            child: buildWave(),
+                          ),
+                        );
                       }
                       return Container(
                         constraints: const BoxConstraints(maxHeight: 120),

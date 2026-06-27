@@ -118,7 +118,7 @@ class VariantController extends GetxController {
     powerCtrl.text = variant.power;
     priceCtrl.text = variant.price;
 
-    variantImages = List<String>.from(variant.images);
+    variantImages = List<String>.from([...variant.images,...variantImages,]);
   
   debugPrint('Color: ${variant.color}');
   debugPrint('Color Index: $colorIndex');

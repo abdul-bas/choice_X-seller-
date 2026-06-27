@@ -12,38 +12,55 @@ class DesktopLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = Get.find<AddProductController>();
-    return Center(
-      child: Container(
-        margin: const EdgeInsets.all(32),
-        constraints: const BoxConstraints(maxWidth: 1100, maxHeight: 700),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.black12, width: 0.5),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.08),
-              blurRadius: 24,
-              offset: const Offset(0, 8),
+    return Stack(
+      children: [
+     
+        Center(
+          child: Container(
+            margin: const EdgeInsets.all(32),
+            constraints: const BoxConstraints(maxWidth: 1100, maxHeight: 700),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.black12, width: 0.5),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.08),
+                  blurRadius: 24,
+                  offset: const Offset(0, 8),
+                ),
+              ],
             ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: Row(
-            children: [
-             
-              const SizedBox(
-                width: 320,height: double.infinity,
-                child: BrandPanel(),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Row(
+                children: [
+                 
+                  const SizedBox(
+                    width: 320,height: double.infinity,
+                    child: BrandPanel(),
+                  ),
+                 
+                  Expanded(
+                    child: ProductForm(c: c, isMobile: isMobile,isCreate:isCreate ,),
+                  ),
+                ],
               ),
-             
-              Expanded(
-                child: ProductForm(c: c, isMobile: isMobile,isCreate:isCreate ,),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        ),   Positioned(top: 10,right: 10,
+          child:IconButton(
+  onPressed: ()=>Navigator.pop(context),
+  style: IconButton.styleFrom(
+    backgroundColor: Colors.grey.shade800,
+    shape: const CircleBorder(),
+    padding: const EdgeInsets.all(8),
+  ),
+  icon: const Icon(
+    Icons.close,
+    color: Colors.white,
+  ),
+)),
+      ],
     );
   }
 }

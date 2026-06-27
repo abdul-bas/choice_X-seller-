@@ -133,7 +133,7 @@ class SellerOrderController extends GetxController {
 
         
         _accumulateStatusCounts(order, allTime: true);
-
+      
       
         if (_isInPeriod(order.date, statFilter.selected, now)) {
           totalOrder++;
@@ -150,6 +150,8 @@ class SellerOrderController extends GetxController {
      
         if (_isInPeriod(order.date, statusFilter.selected, now)) {
           filteredStatusTotal++;
+        
+          
           _accumulateStatusCounts(order, allTime: false);
         }
       }
@@ -207,6 +209,7 @@ class SellerOrderController extends GetxController {
         return date.year == now.year && date.month == now.month;
     }
   }
+  
 
   void setInitialization() {
     init = true;

@@ -21,8 +21,7 @@ class MessageList extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
       key: ValueKey(ctrl.chatVersion),
-      stream:
-          ChatRepository().getMessages(ctrl.currentChatId!, limit: 10),
+      stream: ChatRepository().getMessages(ctrl.currentChatId!, limit: 10),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting &&
             ctrl.messages.isEmpty) {
@@ -31,8 +30,7 @@ class MessageList extends StatelessWidget {
               width: 20,
               height: 20,
               child: CircularProgressIndicator(
-                  color: AppColors.textSubdued,            
-                  strokeWidth: 1.5),
+                  color: AppColors.textSubdued, strokeWidth: 1.5),
             ),
           );
         }
@@ -43,7 +41,7 @@ class MessageList extends StatelessWidget {
           });
         }
 
-        return InkWell(                                    
+        return InkWell(
           onTap: () {
             if (ctrl.isFileUploadVisible) ctrl.toggleFileUploadMenu();
           },
@@ -54,12 +52,10 @@ class MessageList extends StatelessWidget {
                 return const Center(
                   child: Text('No messages yet',
                       style: TextStyle(
-                          color: AppColors.chatTimestamp,    
-                          fontSize: 13)),
+                          color: AppColors.chatTimestamp, fontSize: 13)),
                 );
               }
 
-             
               final rawMessages = c.messages
                   .map((d) => ChatMessageModel.fromMap(d.data()))
                   .toList();
@@ -74,24 +70,23 @@ class MessageList extends StatelessWidget {
                         horizontal: 16, vertical: 12),
                     itemCount: items.length + 1,
                     itemBuilder: (context, index) {
-                     
                       if (index == items.length) {
                         return GetBuilder<ChatController>(
                           id: 'loadMoreIndicator',
                           builder: (ct) {
+                           
                             if (ct.hasReachedEnd) {
                               return const SizedBox(height: 16);
                             }
                             if (ct.isLoadingMore) {
                               return const Padding(
-                                padding:
-                                    EdgeInsets.symmetric(vertical: 14),
+                                padding: EdgeInsets.symmetric(vertical: 14),
                                 child: Center(
                                   child: SizedBox(
                                     width: 20,
                                     height: 20,
                                     child: CircularProgressIndicator(
-                                      color: AppColors.textSubdued, 
+                                      color: AppColors.textSubdued,
                                       strokeWidth: 1.5,
                                     ),
                                   ),
@@ -104,27 +99,38 @@ class MessageList extends StatelessWidget {
                       }
 
                       final item = items[items.length - 1 - index];
+                      if (item is String) {
+                        return Text(
+                          item,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 11,
+                          ),
+                        );
+                      }
 
-                      
                       if (item is DateLabel) {
                         return SellerDateSeparator(label: item.label);
                       }
 
-                      final originalIndex =
-                          c.messages.length - 1 - index;
+                      final originalIndex = c.messages.length - 1 - index;
                       final isSelected = originalIndex == c.currentIndex;
                       final msg = item as ChatMessageModel;
 
-                      return MessageBubble(
-                        index: originalIndex,
-                        isSelected: isSelected,
-                        c: c,
-                        message: msg,
-                        isSender: msg.senderId == c.sellerId,
+                      return Column(
+                        children: [
+                          MessageBubble(
+                            index: originalIndex,
+                            isSelected: isSelected,
+                            c: c,
+                            message: msg,
+                            isSender: msg.senderId == c.sellerId,
+                          ),
+                        ],
                       );
                     },
                   ),
-
                   GetBuilder<ChatController>(
                     id: 'fileUpload',
                     builder: (c) => c.isFileUploadVisible

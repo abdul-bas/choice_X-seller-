@@ -76,6 +76,18 @@ class ChatRepository {
 
     return query.snapshots();
   }
+  
+  Stream<QuerySnapshot<Map<String, dynamic>>> getDemo(
+    String chatId, ) {
+    Query<Map<String, dynamic>> query = firestore
+        .collection('chat')
+        .doc(chatId)
+        .collection('messages')
+        .orderBy('createdAt', descending: true);
+       
+
+    return query.snapshots();
+  }
 
   Future<ChatState> markAsRead(String chatId) async {
     try {

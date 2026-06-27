@@ -58,10 +58,10 @@ class DashboardScrollLayout extends StatelessWidget {
                 builder: (statFilter) {
                   return GetBuilder<SellerOrderController>(
                     builder: (controller) {
-                      final revenue = controller.totalRevenue;
-                      final total = controller.allTotalOrders;
-                      final pending = controller.pendingOrders;
-
+                     final revenue = controller.totalRevenue;
+                    final total = controller.totalOrder;
+                    final pending = controller.pendingOrders;
+                    final completed = controller.completedOrders;
                       return Column(
                         children: [
                           Row(
@@ -69,7 +69,7 @@ class DashboardScrollLayout extends StatelessWidget {
                               Expanded(
                                 child: DashBoardStatCard(
                                   title: 'Total Earnings',
-                                  value: formatNumber(revenue),
+                                  value: revenue,
                                   accentColor: getColorFromPercentage(85),
                                   progressKey: 'earnings',
                                   arcSubLabel: 'Monthly',
@@ -78,8 +78,8 @@ class DashboardScrollLayout extends StatelessWidget {
                               const SizedBox(width: 12),
                               Expanded(
                                 child: DashBoardStatCard(
-                                  title: 'Orders Completed',
-                                  value: formatNumber(total),
+                                  title:'Total Orders',
+                                  value:total,
                                   accentColor: getColorFromPercentage(70),
                                   progressKey: 'orders',
                                   arcSubLabel: 'Delivered',
@@ -92,8 +92,8 @@ class DashboardScrollLayout extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: DashBoardStatCard(
-                                  title: 'Active Listings',
-                                  value: formatNumber(total),
+                                  title: 'Pending Orders',
+                                  value: pending,
                                   accentColor: getColorFromPercentage(90),
                                   progressKey: 'listings',
                                   arcSubLabel: 'Products',
@@ -102,11 +102,11 @@ class DashboardScrollLayout extends StatelessWidget {
                               const SizedBox(width: 12),
                               Expanded(
                                 child: DashBoardStatCard(
-                                  title: 'Buyer Messages',
-                                  value: formatNumber(pending),
+                                  title:'Completed Orders',
+                                  value:completed,
                                   accentColor: getColorFromPercentage(60),
                                   progressKey: 'messages',
-                                  arcSubLabel: 'Unread',
+                                  arcSubLabel:'Delivered',
                                 ),
                               ),
                             ],

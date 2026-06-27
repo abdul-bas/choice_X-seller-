@@ -45,7 +45,7 @@ class ChatListPanel extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Builder(
+               if(isMobile)   Builder(
                     builder: (context) => IconButton(       
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
@@ -133,6 +133,7 @@ class ChatListPanel extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       vertical: 8, horizontal: 12),
                   itemCount: docs.length,
+                
                   separatorBuilder: (_, __) => const SizedBox(height: 2),
                   itemBuilder: (context, i) {
                     final doc = docs[i];
@@ -183,13 +184,8 @@ class ChatListPanel extends StatelessWidget {
                                 }
                               },
                               borderRadius: BorderRadius.circular(10),
-                              child: ChatTile(
-                                chatId: doc.id,
-                                user: user,
-                                lastMsg: chat.lastMessage,
-                                lastTime: chat.lastMessageTime,
-                                unread: chat.sellerUnreadCount,
-                                isSelected: ct.currentChatId == doc.id,
+                              child: ChatTile(isSelected:  ct.currentChatId == doc.id,
+                                chat: chat,user: user,
                               ),
                             ),
                           ),

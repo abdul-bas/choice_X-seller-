@@ -25,10 +25,9 @@ class ChatController extends GetxController {
   final ScrollController scrollController = ScrollController();
   final TextEditingController searchCtrl = TextEditingController();
   final TextEditingController messageCtrl = TextEditingController();
-final RecorderController recorderController =
-    RecorderController();
+  final RecorderController recorderController = RecorderController();
   final List<QueryDocumentSnapshot<Map<String, dynamic>>> messages = [];
-
+   bool isInitialized = false;
   String search = '';
   UserModel? currentUser;
   String? currentChatId;
@@ -73,6 +72,13 @@ final RecorderController recorderController =
   setCurrentIndex(int index) {
     currentIndex = index;
     update(['messageList']);
+  }
+
+ 
+
+  void initialize() {
+    isInitialized = true;
+    notifyChildrens();
   }
 
   void _syncSendState() {

@@ -308,16 +308,6 @@ class AddProductController extends GetxController {
     update(['submit']);
 
     try {
-      print(
-          '--------------------------------------------------------------------------------------------------------------------------');
-      print("product: $product");
-      print("brand: $brand");
-      print("category: $category");
-      print("productType: $productType");
-      print("warranty: $warranty");
-      print("mfgDate: $mfgDate");
-      print("sellerId: ${product?.sellerId}");
-      print("status: ${product?.status}");
       final model = ProductModel(
         id: product!.id,
         sellerId: product!.sellerId,
@@ -490,4 +480,8 @@ class AddProductController extends GetxController {
     );
   }
 
+  deleteVariant(int index) {
+    variants.removeAt(index);
+    update();
+  }
 }

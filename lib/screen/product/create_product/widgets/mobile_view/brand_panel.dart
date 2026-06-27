@@ -11,19 +11,24 @@ class BrandPanelMobile extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: AppColors.deepPurple,
-      padding: const EdgeInsets.fromLTRB(24, 36, 24, 28),
+      padding: const EdgeInsets.fromLTRB(6, 36, 24, 28),
       child: Stack(
         children: [
           Positioned(
             top: -20,
             right: -20,
             child: DecoCircle(size: 120, color: AppColors.purple, opacity: 0.5),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          ),  
+          Row(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BrandLogo(),
-              const SizedBox(height: 20),
+              IconButton(onPressed: ()=>Navigator.pop(context), icon: Icon(Icons.arrow_back,color: AppColors.white,)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BrandLogo(),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ],
           ),
         ],

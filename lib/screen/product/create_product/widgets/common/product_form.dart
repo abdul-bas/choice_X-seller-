@@ -20,19 +20,8 @@ class ProductForm extends StatelessWidget {
   final AddProductController c;
   final bool isMobile;
   final bool isCreate;
-  Widget _variantRow(BuildContext context) {
-    return GetBuilder<AddProductController>(
-      id: 'variant',
-      builder: (_) => variantRow(context),
-    );
-  }
+  
 
-  Widget _imagesRow(BuildContext context) {
-    return GetBuilder<AddProductController>(
-      id: 'images',
-      builder: (_) => images(context),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +62,10 @@ class ProductForm extends StatelessWidget {
                 SectionCard(
                   tag: 'variant',
                   title: 'Variants',
-                  child: _variantRow(context),
+                  child:GetBuilder<AddProductController>(
+      id: 'variant',
+      builder: (_) => variantRow(context),
+    ),
                 ),
                 SectionCard(
                   tag: 'conn',
@@ -95,7 +87,10 @@ class ProductForm extends StatelessWidget {
                 SectionCard(
                   tag: 'images',
                   title: 'Product Images',
-                  child: _imagesRow(context),
+                  child: GetBuilder<AddProductController>(
+      id: 'images',
+      builder: (_) => images(context),
+    ),
                 ),
                 SectionCard(
                   tag: 'timeline',

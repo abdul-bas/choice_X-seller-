@@ -1,6 +1,8 @@
+import 'package:choice_x_seller/config/alert_config.dart';
 import 'package:choice_x_seller/config/app_bar_configs.dart';
 import 'package:choice_x_seller/config/search_icon_btn.dart';
 import 'package:choice_x_seller/core/constants/app_colors.dart';
+import 'package:choice_x_seller/core/dialogs/alert_dialog.dart';
 import 'package:choice_x_seller/core/utils/firestore_helpers/get_seller_product.dart';
 import 'package:choice_x_seller/core/widgets/animation/fad_slide_animation.dart';
 import 'package:choice_x_seller/core/widgets/app_bar/add_button.dart';
@@ -71,7 +73,6 @@ class ProductScreen extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => CreateProductScreen(),
                           ));
-                     
                     },
                   ),
                   searchButton: AppBarSearchIconBtn(
@@ -143,8 +144,7 @@ class ProductScreen extends StatelessWidget {
                                   return isMobile
                                       ? ListView.builder(
                                           shrinkWrap: true,
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
+                                          physics: const ScrollPhysics(),
                                           itemCount: products.length,
                                           itemBuilder: (
                                             context,
@@ -161,18 +161,36 @@ class ProductScreen extends StatelessWidget {
                                                 );
                                               },
                                               onToggleStatus: () {
-                                                product.status =
-                                                    product.status == 'Live'
-                                                        ? 'In Active'
-                                                        : 'Live';
+                                                final isLive =
+                                                    product.status == 'Live';
+                                                final status = isLive
+                                                    ? 'In Active'
+                                                    : 'Live';
 
-                                                context
-                                                    .read<ProductCrudBloc>()
-                                                    .add(
-                                                      UpdateStatus(
-                                                        model: product,
-                                                      ),
-                                                    );
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (_) =>
+                                                      CustomAlertDialog(
+                                                    config: AlertDialogConfig
+                                                        .warning(
+                                                      title:
+                                                          '${status.toUpperCase()} Product',
+                                                      content:
+                                                        'Are you sure you want to ${status.toUpperCase()} this product? It will become ${isLive ?   'unavailable':'available'} to customers.',
+                                                      onConfirm: () {
+                                                        product.status = status;
+                                                        context
+                                                            .read<
+                                                                ProductCrudBloc>()
+                                                            .add(
+                                                              UpdateStatus(
+                                                                model: product,
+                                                              ),
+                                                            );
+                                                      },
+                                                    ),
+                                                  ),
+                                                );
                                               },
                                               onDelete: () {
                                                 showProductDeleteConfirmation(

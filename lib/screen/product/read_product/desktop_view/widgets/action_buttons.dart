@@ -1,4 +1,6 @@
+import 'package:choice_x_seller/config/alert_config.dart';
 import 'package:choice_x_seller/core/constants/app_colors.dart';
+import 'package:choice_x_seller/core/dialogs/alert_dialog.dart';
 import 'package:choice_x_seller/models/product_model/product_model.dart';
 import 'package:choice_x_seller/screen/product/controller/controller.dart';
 import 'package:choice_x_seller/state/bloc/product_add/product_crud_bloc.dart';
@@ -39,14 +41,25 @@ class ProductReadDesktopActionButtons extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: TextButtonWidget(
-                function: () {
-                  product.status =
-                      product.status == 'Live' ? 'In Active' : 'Live';
-                  context
-                      .read<ProductCrudBloc>()
-                      .add(UpdateStatus(model: product));
-                 
-                },
+                 function: () {
+  final isLive = product.status == 'Live';
+ final status=isLive ? 'In Active' : 'Live';
+  showDialog(
+    context: context,
+    builder: (_) => CustomAlertDialog(
+      config: AlertDialogConfig.warning(title: '${status .toUpperCase()} Product', content: 'Are you sure you want to ${status.toUpperCase()} this product? It will become ${isLive ?  'unavailable':'available'} to customers.', onConfirm: () {
+        product.status =status ;
+
+        context.read<ProductCrudBloc>().add(
+          UpdateStatus(
+            model: product,
+          ),
+        );
+      },),
+     
+    ),
+  );
+},
                 text: product.status == 'Live' ? 'In Active' : 'Live',
                 buttonHight: 20,
                 fontSize: 7,

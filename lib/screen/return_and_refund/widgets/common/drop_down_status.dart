@@ -1,4 +1,6 @@
-  import 'package:choice_x_seller/core/constants/app_colors.dart';
+  import 'package:choice_x_seller/config/alert_config.dart';
+import 'package:choice_x_seller/core/constants/app_colors.dart';
+import 'package:choice_x_seller/core/dialogs/alert_dialog.dart';
 import 'package:choice_x_seller/models/return_and_refund/return_and_refund.dart';
 import 'package:choice_x_seller/state/bloc/order/order_bloc.dart';
 import 'package:choice_x_seller/state/bloc/order/return_and_refund_event/return_and_refund_event.dart';
@@ -113,12 +115,26 @@ class ReturnStatusDropdown extends StatelessWidget {
                     }).toList(),
                     onChanged: (newStatus) {
                       if (newStatus != null && newStatus != request.status) {
-                        context.read<OrderBloc>().add(
-                              ChangeReturnAndRefundStatus(
-                                id: request.requestId,
-                                status: newStatus,
-                              ),
-                            );
+                     showDialog(
+  context: context,
+  builder: (context) => CustomAlertDialog(
+    config: AlertDialogConfig.warning(
+      title: 'Update Return & Refund Status',
+      content:
+          'Are you sure you want to change the return and refund status to "$newStatus"? This action will update the request status and notify the customer.',
+      onConfirm: () {
+      
+
+        context.read<OrderBloc>().add(
+          ChangeReturnAndRefundStatus(
+            id: request.requestId,
+            status: newStatus,
+          ),
+        );
+      },
+    ),
+  ),
+);
                       }
                     },
                   ),

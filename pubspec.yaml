@@ -66,6 +66,9 @@ dependencies:
   firebase_storage: ^13.1.0
   fl_chart: ^1.2.0
   audio_waveforms: ^2.0.2
+  wave_widget: ^0.1.1
+  get_storage: ^2.1.1
+  shared_preferences: ^2.5.5
  
   
  

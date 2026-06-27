@@ -1,27 +1,15 @@
-
 import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/core/utils/helpers/time_formatter.dart';
+import 'package:choice_x_seller/models/chat_model/chat_model.dart';
 import 'package:choice_x_seller/models/user_model/user_model.dart';
 import 'package:flutter/material.dart';
 
 class ChatTile extends StatelessWidget {
-  const ChatTile({
-    super.key,
-    required this.chatId,
-    required this.user,
-    required this.lastMsg,
-    required this.unread,
-    required this.isSelected,
-    this.lastTime,
-  });
+  const ChatTile({super.key, required this.user, required this.chat,required this.isSelected});
 
-  final String chatId;
   final UserModel user;
-  final String lastMsg;
-  final int unread;
+  final ChatModel chat;
   final bool isSelected;
-  final DateTime? lastTime;
-
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -30,13 +18,13 @@ class ChatTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         color: isSelected
-            ? AppColors.sellerAccent.withValues(alpha: 0.08) 
-            : AppColors.transparent,                         
+            ? AppColors.sellerAccent.withValues(alpha: 0.08)
+            : AppColors.transparent,
         borderRadius: BorderRadius.circular(12),
         border: isSelected
             ? Border(
                 left: BorderSide(
-                  color: AppColors.sellerAccent,              
+                  color: AppColors.sellerAccent,
                   width: 3,
                 ),
               )
@@ -44,24 +32,22 @@ class ChatTile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          
           Stack(
             children: [
               CircleAvatar(
                 radius: 22,
                 backgroundColor: isSelected
                     ? AppColors.sellerAccent.withValues(alpha: 0.3)
-                    : AppColors.chatBubbleReceiver,           
+                    : AppColors.chatBubbleReceiver,
                 child: Text(
                   user.name.isNotEmpty ? user.name[0].toUpperCase() : '?',
                   style: const TextStyle(
-                    color: AppColors.chatTextReceiverAlt,     
+                    color: AppColors.chatTextReceiverAlt,
                     fontWeight: FontWeight.w700,
                     fontSize: 15,
                   ),
                 ),
               ),
-          
               Positioned(
                 bottom: 1,
                 right: 1,
@@ -69,18 +55,15 @@ class ChatTile extends StatelessWidget {
                   width: 10,
                   height: 10,
                   decoration: BoxDecoration(
-                    color: AppColors.success,                
+                    color: AppColors.success,
                     shape: BoxShape.circle,
-                    border: Border.all(
-                        color: AppColors.sellerBg, width: 2), 
+                    border: Border.all(color: AppColors.sellerBg, width: 2),
                   ),
                 ),
               ),
             ],
           ),
           const SizedBox(width: 12),
-
-        
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +75,7 @@ class ChatTile extends StatelessWidget {
                         user.name,
                         style: TextStyle(
                           fontSize: 13.5,
-                          fontWeight: unread > 0
+                          fontWeight: chat.sellerUnreadCount > 0
                               ? FontWeight.w700
                               : FontWeight.w500,
                           color: AppColors.chatTextReceiverAlt,
@@ -101,15 +84,15 @@ class ChatTile extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    if (lastTime != null)
+                   
                       Text(
-                        fmtTime(lastTime!),
+                        fmtTime(chat.lastMessageTime),
                         style: TextStyle(
                           fontSize: 10,
-                          color: unread > 0
-                              ? AppColors.sellerAccent       
-                              : AppColors.chatTimestamp,    
-                          fontWeight: unread > 0
+                          color: chat.sellerUnreadCount > 0
+                              ? AppColors.sellerAccent
+                              : AppColors.chatTimestamp,
+                          fontWeight: chat.sellerUnreadCount > 0
                               ? FontWeight.w600
                               : FontWeight.w400,
                         ),
@@ -121,14 +104,16 @@ class ChatTile extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        lastMsg.isEmpty ? 'No messages yet' : lastMsg,
+                        chat.lastMessage.isEmpty
+                            ? 'Unsupported message'
+                            : chat.lastMessage,
                         style: TextStyle(
                           fontSize: 12,
-                          color: unread > 0
-                              ? AppColors.chatTextReceiverAlt 
+                          color: chat.sellerUnreadCount > 0
+                              ? AppColors.chatTextReceiverAlt
                                   .withValues(alpha: 0.6)
-                              : AppColors.chatTimestamp,     
-                          fontWeight: unread > 0
+                              : AppColors.chatTimestamp,
+                          fontWeight: chat.sellerUnreadCount > 0
                               ? FontWeight.w500
                               : FontWeight.w400,
                         ),
@@ -136,21 +121,23 @@ class ChatTile extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    if (unread > 0)
+                    if (chat.sellerUnreadCount > 0)
                       Container(
                         margin: const EdgeInsets.only(left: 8),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 7, vertical: 3),
                         decoration: BoxDecoration(
-                          color: AppColors.sellerAccent,      
+                          color: AppColors.sellerAccent,
                           borderRadius: BorderRadius.circular(99),
                         ),
                         child: Text(
-                          unread > 99 ? '99+' : '$unread',
+                          chat.sellerUnreadCount > 99
+                              ? '99+'
+                              : '$chat.sellerUnreadCount',
                           style: const TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w800,
-                            color: AppColors.white,       
+                            color: AppColors.white,
                           ),
                         ),
                       ),

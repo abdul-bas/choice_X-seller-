@@ -2,7 +2,7 @@ import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/screen/product/create_product/widgets/mobile_view/mobile_view.dart';
 import 'package:choice_x_seller/state/get_x/product_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'widgets/desk_top/desk_top.dart';

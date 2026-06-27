@@ -1,5 +1,7 @@
+import 'package:choice_x_seller/config/alert_config.dart';
 import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/core/constants/variant_colorsMap.dart';
+import 'package:choice_x_seller/core/dialogs/alert_dialog.dart';
 import 'package:choice_x_seller/models/variant_model/variant_model.dart';
 import 'package:choice_x_seller/screen/product/controller/controller.dart';
 import 'package:choice_x_seller/screen/product/common/variant/btn.dart';
@@ -65,7 +67,7 @@ class VariantCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      // Color chip
+                  
                       Container(
                         padding: const EdgeInsets.fromLTRB(8, 5, 12, 5),
                         decoration: BoxDecoration(
@@ -143,7 +145,7 @@ class VariantCard extends StatelessWidget {
 
                       const Spacer(),
 
-                      // Edit button
+                   
                       Btn(
                         icon: Icons.edit_outlined,
                         color: AppColors.sellerSubtitle,
@@ -161,11 +163,11 @@ class VariantCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 6),
 
-                      // Delete button
+                     
                       Btn(
                         icon: Icons.delete_outline_rounded,
                         color: AppColors.danger,
-                        onTap: () => controller.variants.removeAt(index),
+                        onTap: () => showDialog(context: context, builder: (context) => CustomAlertDialog(config: AlertDialogConfig.delete(onConfirm: () => controller.deleteVariant(index),)),),
                       ),
                     ],
                   ),
