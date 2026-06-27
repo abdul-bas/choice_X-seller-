@@ -339,6 +339,7 @@ static Color appBarSearchCloseBg   = Colors.white.withValues(alpha: 0.08);
 static Color appBarSearchCloseIcon = Colors.white.withValues(alpha: 0.45);
 static Color appBarSearchBorder    = Colors.white.withValues(alpha: 0.08);
 static Color appBarSearchFocusBorder = Colors.white.withValues(alpha: 0.20);
+<<<<<<< HEAD
 static const deepPurple = Color(0xFF26215C);
   static const purple = Color(0xFF3C3489);
   static const purpleMid = Color(0xFF534AB7);
@@ -356,4 +357,7 @@ static const deepPurple = Color(0xFF26215C);
  
   static const textSoft    = Color(0xFFEDE9FE);
   static const textQuote   = Color(0xFFE0D9FF);
+=======
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 }

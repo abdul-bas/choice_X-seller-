@@ -1,4 +1,8 @@
 import 'package:choice_x_seller/config/app_bar_configs.dart';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/core/utils/helpers/get_spots.dart';
 import 'package:choice_x_seller/core/widgets/animation/fad_slide_animation.dart';
@@ -137,7 +141,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     borderRadius: BorderRadius.circular(16),
                     child: GetBuilder<SellerOrderController>(
                       builder: (controller) {
+<<<<<<< HEAD
                           if (controller.totalRevenue == 0&&controller.allTotalOrders==0&&controller.pendingOrders==0&&controller.totalOrder==0) {
+=======
+                          if (controller.totalRevenue == 0) {
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
               return EmptyRevenueState();
             }
                         return GetBuilder<ArcProgressController>(

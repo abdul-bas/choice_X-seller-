@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/core/utils/helpers/formate_number.dart';
 import 'package:choice_x_seller/core/utils/helpers/mange_empty_stat.dart';
+=======
+
+import 'package:choice_x_seller/core/constants/app_colors.dart';
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:choice_x_seller/screen/seller_dashboard/widgets/dash_board_stat_card/arc_painter.dart';
 import 'package:choice_x_seller/screen/seller_dashboard/widgets/dash_board_stat_card/delta_row.dart';
 import 'package:choice_x_seller/state/get_x/arc_progress_controller.dart';
@@ -8,6 +13,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 class DashBoardStatCard extends StatelessWidget {
   const DashBoardStatCard({
     super.key,
@@ -21,7 +30,11 @@ class DashBoardStatCard extends StatelessWidget {
   });
 
   final String title;
+<<<<<<< HEAD
   final int value;
+=======
+  final String value;
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
   final Color accentColor;
   final String progressKey;
   final String statusLabel;
@@ -32,11 +45,19 @@ class DashBoardStatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<ArcProgressController>();
     final double progress = controller.getProgress(progressKey);
+<<<<<<< HEAD
    
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.sellerSurface,
+=======
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.sellerSurface,             
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: AppColors.white.withValues(alpha: 0.08),
@@ -67,7 +88,11 @@ class DashBoardStatCard extends StatelessWidget {
                         Text(
                           '${progress.round()}%',
                           style: const TextStyle(
+<<<<<<< HEAD
                             color: AppColors.white,
+=======
+                            color: AppColors.white,    
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
                             letterSpacing: -0.5,
@@ -93,6 +118,7 @@ class DashBoardStatCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+<<<<<<< HEAD
                  value > 0
     ? Text(
         formatNumber(value),
@@ -112,6 +138,20 @@ class DashBoardStatCard extends StatelessWidget {
       ),
                     const SizedBox(height: 5),
             if(value>0)        Text(
+=======
+                    Text(
+                      value,
+                      style: const TextStyle(
+                        color: AppColors.white,        
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: -1,
+                        height: 1,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                       title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -134,4 +174,8 @@ class DashBoardStatCard extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7

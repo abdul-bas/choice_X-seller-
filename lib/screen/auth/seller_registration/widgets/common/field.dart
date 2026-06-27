@@ -1,7 +1,11 @@
 import 'package:choice_x_seller/state/get_x/seller_registration_contorller.dart';
 import 'package:choice_x_seller/screen/auth/seller_registration/widgets/common/label.dart';
 
+<<<<<<< HEAD
 import 'package:choice_x_seller/screen/product/common/input_fields/input_dec.dart';
+=======
+import 'package:choice_x_seller/screen/product/create_product/widgets/common/input_dec.dart';
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';

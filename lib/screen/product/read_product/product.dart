@@ -1,13 +1,23 @@
+<<<<<<< HEAD
 import 'package:choice_x_seller/config/alert_config.dart';
 import 'package:choice_x_seller/config/app_bar_configs.dart';
 import 'package:choice_x_seller/config/search_icon_btn.dart';
 import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/core/dialogs/alert_dialog.dart';
+=======
+import 'package:choice_x_seller/config/app_bar_configs.dart';
+import 'package:choice_x_seller/config/search_icon_btn.dart';
+import 'package:choice_x_seller/core/constants/app_colors.dart';
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:choice_x_seller/core/utils/firestore_helpers/get_seller_product.dart';
 import 'package:choice_x_seller/core/widgets/animation/fad_slide_animation.dart';
 import 'package:choice_x_seller/core/widgets/app_bar/add_button.dart';
 import 'package:choice_x_seller/core/widgets/app_bar/app_bar.dart';
 import 'package:choice_x_seller/screen/product/controller/controller.dart';
+<<<<<<< HEAD
+=======
+import 'package:choice_x_seller/screen/product/create_product/cre.dart';
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:choice_x_seller/screen/product/create_product/create_product.dart';
 import 'package:choice_x_seller/screen/product/listener/product_listener.dart';
 import 'package:choice_x_seller/state/bloc/product_add/product_crud_bloc.dart';
@@ -73,6 +83,10 @@ class ProductScreen extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => CreateProductScreen(),
                           ));
+<<<<<<< HEAD
+=======
+                     
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                     },
                   ),
                   searchButton: AppBarSearchIconBtn(
@@ -144,7 +158,12 @@ class ProductScreen extends StatelessWidget {
                                   return isMobile
                                       ? ListView.builder(
                                           shrinkWrap: true,
+<<<<<<< HEAD
                                           physics: const ScrollPhysics(),
+=======
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                                           itemCount: products.length,
                                           itemBuilder: (
                                             context,
@@ -161,6 +180,7 @@ class ProductScreen extends StatelessWidget {
                                                 );
                                               },
                                               onToggleStatus: () {
+<<<<<<< HEAD
                                                 final isLive =
                                                     product.status == 'Live';
                                                 final status = isLive
@@ -191,6 +211,20 @@ class ProductScreen extends StatelessWidget {
                                                     ),
                                                   ),
                                                 );
+=======
+                                                product.status =
+                                                    product.status == 'Live'
+                                                        ? 'In Active'
+                                                        : 'Live';
+
+                                                context
+                                                    .read<ProductCrudBloc>()
+                                                    .add(
+                                                      UpdateStatus(
+                                                        model: product,
+                                                      ),
+                                                    );
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                                               },
                                               onDelete: () {
                                                 showProductDeleteConfirmation(

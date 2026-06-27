@@ -1,8 +1,12 @@
 {
   "projects": {
+<<<<<<< HEAD
     "default": "choicex-8590",
     "build/web": "choicex-8590",
     "prod": "choicex-8590"
+=======
+    "default": "choicex-8590"
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
   },
   "targets": {
     "choicex-8590": {
@@ -14,4 +18,8 @@
     }
   },
   "etags": {}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7

@@ -21,13 +21,27 @@
       }
     }
   },
+<<<<<<< HEAD
   "hosting": {
     "site": "choice8590-seller",
+=======
+    "hosting": {
+    "target": "seller",
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
     "public": "build/web",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+<<<<<<< HEAD
+=======
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
     ]
   }
 }

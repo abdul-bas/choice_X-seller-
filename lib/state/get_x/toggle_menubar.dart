@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+<<<<<<< HEAD
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DashbordSideview extends GetxController {
@@ -21,5 +22,13 @@ class DashbordSideview extends GetxController {
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt('menuIndex', newIndex);
+=======
+
+class DashbordSideview extends GetxController {
+   RxInt index=0.obs;
+  toggleIndex(int newIndex) {
+    index.value = newIndex;
+    
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
   }
 }

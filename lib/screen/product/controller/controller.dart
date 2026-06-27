@@ -1,8 +1,24 @@
+<<<<<<< HEAD
 
 import 'package:choice_x_seller/models/product_model/product_model.dart';
 import 'package:choice_x_seller/screen/product/edit_product/update_product.dart';
 import 'package:choice_x_seller/screen/product/product_detail_page/product_detail_page.dart';
 import 'package:flutter/material.dart';
+=======
+import 'package:choice_x_seller/core/utils/helpers/id_generator.dart';
+import 'package:choice_x_seller/core/utils/snackbar/error_snackbar.dart';
+import 'package:choice_x_seller/models/product_model/product_model.dart';
+import 'package:choice_x_seller/repository/auth_repository/repository.dart';
+import 'package:choice_x_seller/screen/product/create_product/widgets/basic_details/basic_deails.dart';
+import 'package:choice_x_seller/screen/product/create_product/widgets/section_card/section_card.dart';
+import 'package:choice_x_seller/screen/product/edit_product/edit_product.dart';
+import 'package:choice_x_seller/screen/product/product_detail_page/product_detail_page.dart';
+import 'package:choice_x_seller/state/bloc/product_add/product_crud_bloc.dart';
+import 'package:choice_x_seller/state/bloc/product_add/product_crud_event.dart';
+import 'package:choice_x_seller/state/get_x/product_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 
 class ProductLogic {
   static const List<String> connectivityOptions = [
@@ -177,6 +193,99 @@ class ProductLogic {
     return null;
   }
 
+<<<<<<< HEAD
+=======
+  static Future<void> submitCreateProduct({
+    required AddProductController c,
+    required BuildContext context,
+  }) async {
+    final isFormValid = c.formKey.currentState?.validate() ?? false;
+
+    if (!isFormValid) {
+      showError('Please fill all required fields', context);
+      return;
+    }
+
+    if (c.brand == null ||
+        c.category == null ||
+        c.productType == null ||
+        c.warranty == null ||
+        c.delivery == null) {
+      showError(
+        'Please select all dropdown fields',
+        context,
+      );
+      return;
+    }
+
+    if (c.mfgDate == null || c.addedDate == null) {
+      showError(
+        'Please select manufacture and added date',
+        context,
+      );
+      return;
+    }
+
+    if (c.images.isEmpty) {
+      showError(
+        'Please upload at least one image',
+        context,
+      );
+      return;
+    }
+
+    if (c.variants.isEmpty) {
+      showError(
+        'Please add at least one variant',
+        context,
+      );
+      return;
+    }
+
+    final deliveryDays = int.tryParse(c.delivery!);
+
+    if (deliveryDays == null) {
+      showError('Invalid delivery days', context);
+      return;
+    }
+
+    final sellerId = AuthRepository().sellerId();
+
+    final productModel = ProductModel(
+      expectedDeliveryDays: deliveryDays,
+      id: generateProductId(),
+      sellerId: sellerId,
+      productName: c.cName.text.trim(),
+      brand: c.brand!,
+      model: c.cModel.text.trim(),
+      description: c.cDesc.text.trim(),
+      category: c.category!,
+      productType: c.productType!,
+      connectivityOptions: List.from(
+        c.selectedConn,
+      ),
+      warranty: c.warranty!,
+      size: c.cSize.text.trim(),
+      tag: c.cTags.text.trim(),
+      manufactureDate: c.mfgDate ?? DateTime.now(),
+      addedDate: c.addedDate ?? DateTime.now(),
+      status: 'Live',
+      imges: List<String>.from(c.images),
+      weight: c.cWeight.text.trim(),
+      variants: List<Map<String, dynamic>>.from(
+        c.variants,
+      ),
+    );
+    context.read<ProductCrudBloc>().add(
+          AddProduct(model: productModel),
+        );
+
+    c.clearAll();
+
+    Navigator.pop(context);
+  }
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
   static String fmtPrice(double v) {
     final s = v.toStringAsFixed(0);
 
@@ -192,15 +301,112 @@ class ProductLogic {
     return discount > 0 ? rawPrice * (1 - discount / 100) : rawPrice;
   }
 
+<<<<<<< HEAD
+=======
+  static Future<void> submitEditProduct({
+    required GlobalKey<FormState> formKey,
+    required AddProductController c,
+    required ProductModel product,
+    required BuildContext context,
+  }) async {
+    if (!formKey.currentState!.validate()) return;
+
+    final brand = c.brand;
+    final category = c.category;
+    final productType = c.productType;
+    final warranty = c.warranty;
+    final delivery = c.delivery;
+    final images = c.images;
+    final variants = c.variants;
+    final mfgDate = c.mfgDate;
+    final addedDate = c.addedDate;
+    if(c.cName.text.isNotEmpty&&c.brand.isNotEmpty&&c.cModel){
+      c.pro
+    }
+//......................................................
+    if (brand == null ||
+        category == null ||
+        productType == null ||
+        warranty == null ||
+        delivery == null) {
+      showError('Please select all dropdown fields', context);
+      return;
+    }
+
+    if (mfgDate == null || addedDate == null) {
+      showError(
+        'Please select manufacture and added date',
+        context,
+      );
+      return;
+    }
+
+    if (images.isEmpty) {
+      showError(
+        'Please upload at least one image',
+        context,
+      );
+      return;
+    }
+
+    if (variants.isEmpty) {
+      showError(
+        'Please add at least one variant',
+        context,
+      );
+      return;
+    }
+
+    final deliveryDays = int.tryParse(delivery);
+
+    if (deliveryDays == null) {
+      showError('Invalid delivery days', context);
+      return;
+    }
+
+    final productModel = ProductModel(
+      expectedDeliveryDays: deliveryDays,
+      id: product.id,
+      sellerId: product.sellerId,
+      productName: c.cName.text.trim(),
+      brand: brand,
+      model: c.cModel.text.trim(),
+      description: c.cDesc.text.trim(),
+      category: category,
+      productType: productType,
+      connectivityOptions: c.selectedConn.toList(),
+      warranty: warranty,
+      size: c.cSize.text.trim(),
+      tag: c.cTags.text.trim(),
+      manufactureDate: mfgDate,
+      addedDate: DateTime.now(),
+      status: product.status,
+      imges: images,
+      weight: c.cWeight.text.trim(),
+      variants: variants,
+    );
+
+    context.read<ProductCrudBloc>().add(
+          EditProduct(product: productModel),
+        );
+
+    Navigator.of(context).pop();
+  }
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
   static void navigateToEdit(
     BuildContext context,
     ProductModel product,
   ) {
     showDialog(
       context: context,
+<<<<<<< HEAD
       builder: (context) => UpdateProductScreen(
         product: product,
       ),
+=======
+      builder: (context) => EditProductScreen(product: product),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
     );
   }
 
@@ -217,6 +423,7 @@ class ProductLogic {
     );
   }
 
+<<<<<<< HEAD
   static const productAddingItems = [
     (
       Icons.currency_rupee_rounded,
@@ -250,4 +457,9 @@ class ProductLogic {
     ),
   ];
 
+=======
+
+
+ 
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 }

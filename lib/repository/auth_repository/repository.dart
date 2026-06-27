@@ -5,6 +5,10 @@ import 'package:choice_x_seller/layout/dash_board.dart';
 import 'package:choice_x_seller/screen/welcome_screen/welcome_screen.dart';
 import 'package:choice_x_seller/screen/auth/seller_verification_status/pending_screen.dart';
 import 'package:choice_x_seller/screen/auth/seller_verification_status/reject_screen.dart';
+<<<<<<< HEAD
+=======
+import 'package:choice_x_seller/state/bloc/auth/events/auth_event.dart';
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:choice_x_seller/state/bloc/auth/states/auth_state.dart';
 import 'package:choice_x_seller/state/bloc/auth/states/log_out_state.dart';
 import 'package:choice_x_seller/state/bloc/auth/states/update_password.dart';

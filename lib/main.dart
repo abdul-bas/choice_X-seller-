@@ -35,7 +35,10 @@ void main() async {
   Get.put(ArcProgressController());
 
   Get.put(OrderStatusController());
+<<<<<<< HEAD
    Get.put(AddProductController());
+=======
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 
   runApp(const MyApp());
 }

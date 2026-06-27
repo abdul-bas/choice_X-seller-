@@ -20,7 +20,11 @@ class NotificationModel {
   
   factory NotificationModel.fromMap(
     Map<String, dynamic> map,
+<<<<<<< HEAD
     
+=======
+    String documentId,
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
   ) {
     return NotificationModel(
       

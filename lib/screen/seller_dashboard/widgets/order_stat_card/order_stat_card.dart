@@ -32,17 +32,30 @@ class OrderStatusCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SellerOrderController>(
       builder: (controller) {
+<<<<<<< HEAD
         if (controller.totalOrder == 0) {
           return const OrderStatusEmptyState();
         }
     
         final total = controller.totalOrder;
     
+=======
+        if (controller.allTotalOrders == 0) {
+          return const OrderStatusEmptyState();
+        }
+
+        final total = controller.allTotalOrders;
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
      
         final hasAnyPieData = _entries.any(
           (e) => DashboardLogic.getPieValue(e.key, controller) > 0,
         );
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
         final inner = Container(
           padding: const EdgeInsets.fromLTRB(15, 15, 20, 20),
           decoration: BoxDecoration(
@@ -55,7 +68,11 @@ class OrderStatusCardWidget extends StatelessWidget {
             children: [
            
              
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
               Expanded(
                 child: hasAnyPieData
                     ? Row(
@@ -138,7 +155,11 @@ class OrderStatusCardWidget extends StatelessWidget {
             ],
           ),
         );
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
         return useAspectRatio
             ? AspectRatio(
                 aspectRatio: isMobile ? 0.5 : 1.15,

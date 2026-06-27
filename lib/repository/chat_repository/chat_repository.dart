@@ -76,6 +76,7 @@ class ChatRepository {
 
     return query.snapshots();
   }
+<<<<<<< HEAD
   
   Stream<QuerySnapshot<Map<String, dynamic>>> getDemo(
     String chatId, ) {
@@ -88,6 +89,8 @@ class ChatRepository {
 
     return query.snapshots();
   }
+=======
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 
   Future<ChatState> markAsRead(String chatId) async {
     try {

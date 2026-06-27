@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import 'package:choice_x_seller/config/alert_config.dart';
 import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/core/constants/return_statuses.dart';
 import 'package:choice_x_seller/core/dialogs/alert_dialog.dart';
+=======
+
+
+import 'package:choice_x_seller/core/constants/app_colors.dart';
+import 'package:choice_x_seller/core/constants/return_statuses.dart';
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:choice_x_seller/core/utils/colors/return_status_color.dart';
 import 'package:choice_x_seller/models/return_and_refund/return_and_refund.dart';
 import 'package:choice_x_seller/state/bloc/order/order_bloc.dart';
@@ -9,6 +16,10 @@ import 'package:choice_x_seller/state/bloc/order/return_and_refund_event/return_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 class ReturnStatusDropdownInline extends StatelessWidget {
   const ReturnStatusDropdownInline({
     super.key,
@@ -27,9 +38,15 @@ class ReturnStatusDropdownInline extends StatelessWidget {
       height: isTablet ? 34 : 38,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
+<<<<<<< HEAD
         color: AppColors.sellerBg,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: AppColors.sellerBorder, width: 1),
+=======
+        color: AppColors.sellerBg,                 
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.sellerBorder, width: 1), 
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
@@ -39,15 +56,25 @@ class ReturnStatusDropdownInline extends StatelessWidget {
           isExpanded: true,
           icon: Icon(
             Icons.expand_more_rounded,
+<<<<<<< HEAD
             color: AppColors.sellerWhite70,
+=======
+            color: AppColors.sellerWhite70,        
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
             size: isTablet ? 18 : 20,
           ),
           style: TextStyle(
             fontSize: isTablet ? 10 : 11,
             fontWeight: FontWeight.w600,
+<<<<<<< HEAD
             color: AppColors.white,
           ),
           dropdownColor: _dropdownBg,
+=======
+            color: AppColors.white,              
+          ),
+          dropdownColor: _dropdownBg,               
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
           borderRadius: BorderRadius.circular(12),
           menuMaxHeight: 300,
           items: returnStatuses.map((status) {
@@ -70,7 +97,11 @@ class ReturnStatusDropdownInline extends StatelessWidget {
                       style: TextStyle(
                         fontSize: isTablet ? 10 : 11,
                         fontWeight: FontWeight.w500,
+<<<<<<< HEAD
                         color: AppColors.white,
+=======
+                        color: AppColors.white,     
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -81,6 +112,7 @@ class ReturnStatusDropdownInline extends StatelessWidget {
           }).toList(),
           onChanged: (newStatus) {
             if (newStatus != null && newStatus != request.status) {
+<<<<<<< HEAD
              showDialog(
   context: context,
   builder: (context) => CustomAlertDialog(
@@ -101,10 +133,22 @@ class ReturnStatusDropdownInline extends StatelessWidget {
     ),
   ),
 );
+=======
+              context.read<OrderBloc>().add(
+                    ChangeReturnAndRefundStatus(
+                      id: request.requestId,
+                      status: newStatus,
+                    ),
+                  );
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
             }
           },
         ),
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7

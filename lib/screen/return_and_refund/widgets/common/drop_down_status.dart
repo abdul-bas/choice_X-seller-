@@ -1,6 +1,10 @@
+<<<<<<< HEAD
   import 'package:choice_x_seller/config/alert_config.dart';
 import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/core/dialogs/alert_dialog.dart';
+=======
+  import 'package:choice_x_seller/core/constants/app_colors.dart';
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:choice_x_seller/models/return_and_refund/return_and_refund.dart';
 import 'package:choice_x_seller/state/bloc/order/order_bloc.dart';
 import 'package:choice_x_seller/state/bloc/order/return_and_refund_event/return_and_refund_event.dart';
@@ -115,6 +119,7 @@ class ReturnStatusDropdown extends StatelessWidget {
                     }).toList(),
                     onChanged: (newStatus) {
                       if (newStatus != null && newStatus != request.status) {
+<<<<<<< HEAD
                      showDialog(
   context: context,
   builder: (context) => CustomAlertDialog(
@@ -135,6 +140,14 @@ class ReturnStatusDropdown extends StatelessWidget {
     ),
   ),
 );
+=======
+                        context.read<OrderBloc>().add(
+                              ChangeReturnAndRefundStatus(
+                                id: request.requestId,
+                                status: newStatus,
+                              ),
+                            );
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                       }
                     },
                   ),

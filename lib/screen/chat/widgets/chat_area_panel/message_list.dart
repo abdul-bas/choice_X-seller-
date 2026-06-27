@@ -21,7 +21,12 @@ class MessageList extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
       key: ValueKey(ctrl.chatVersion),
+<<<<<<< HEAD
       stream: ChatRepository().getMessages(ctrl.currentChatId!, limit: 10),
+=======
+      stream:
+          ChatRepository().getMessages(ctrl.currentChatId!, limit: 10),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting &&
             ctrl.messages.isEmpty) {
@@ -30,7 +35,12 @@ class MessageList extends StatelessWidget {
               width: 20,
               height: 20,
               child: CircularProgressIndicator(
+<<<<<<< HEAD
                   color: AppColors.textSubdued, strokeWidth: 1.5),
+=======
+                  color: AppColors.textSubdued,            
+                  strokeWidth: 1.5),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
             ),
           );
         }
@@ -41,7 +51,11 @@ class MessageList extends StatelessWidget {
           });
         }
 
+<<<<<<< HEAD
         return InkWell(
+=======
+        return InkWell(                                    
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
           onTap: () {
             if (ctrl.isFileUploadVisible) ctrl.toggleFileUploadMenu();
           },
@@ -52,10 +66,19 @@ class MessageList extends StatelessWidget {
                 return const Center(
                   child: Text('No messages yet',
                       style: TextStyle(
+<<<<<<< HEAD
                           color: AppColors.chatTimestamp, fontSize: 13)),
                 );
               }
 
+=======
+                          color: AppColors.chatTimestamp,    
+                          fontSize: 13)),
+                );
+              }
+
+             
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
               final rawMessages = c.messages
                   .map((d) => ChatMessageModel.fromMap(d.data()))
                   .toList();
@@ -70,23 +93,39 @@ class MessageList extends StatelessWidget {
                         horizontal: 16, vertical: 12),
                     itemCount: items.length + 1,
                     itemBuilder: (context, index) {
+<<<<<<< HEAD
+=======
+                     
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                       if (index == items.length) {
                         return GetBuilder<ChatController>(
                           id: 'loadMoreIndicator',
                           builder: (ct) {
+<<<<<<< HEAD
                            
+=======
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                             if (ct.hasReachedEnd) {
                               return const SizedBox(height: 16);
                             }
                             if (ct.isLoadingMore) {
                               return const Padding(
+<<<<<<< HEAD
                                 padding: EdgeInsets.symmetric(vertical: 14),
+=======
+                                padding:
+                                    EdgeInsets.symmetric(vertical: 14),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                                 child: Center(
                                   child: SizedBox(
                                     width: 20,
                                     height: 20,
                                     child: CircularProgressIndicator(
+<<<<<<< HEAD
                                       color: AppColors.textSubdued,
+=======
+                                      color: AppColors.textSubdued, 
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                                       strokeWidth: 1.5,
                                     ),
                                   ),
@@ -99,6 +138,7 @@ class MessageList extends StatelessWidget {
                       }
 
                       final item = items[items.length - 1 - index];
+<<<<<<< HEAD
                       if (item is String) {
                         return Text(
                           item,
@@ -110,10 +150,15 @@ class MessageList extends StatelessWidget {
                         );
                       }
 
+=======
+
+                      
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                       if (item is DateLabel) {
                         return SellerDateSeparator(label: item.label);
                       }
 
+<<<<<<< HEAD
                       final originalIndex = c.messages.length - 1 - index;
                       final isSelected = originalIndex == c.currentIndex;
                       final msg = item as ChatMessageModel;
@@ -131,6 +176,23 @@ class MessageList extends StatelessWidget {
                       );
                     },
                   ),
+=======
+                      final originalIndex =
+                          c.messages.length - 1 - index;
+                      final isSelected = originalIndex == c.currentIndex;
+                      final msg = item as ChatMessageModel;
+
+                      return MessageBubble(
+                        index: originalIndex,
+                        isSelected: isSelected,
+                        c: c,
+                        message: msg,
+                        isSender: msg.senderId == c.sellerId,
+                      );
+                    },
+                  ),
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                   GetBuilder<ChatController>(
                     id: 'fileUpload',
                     builder: (c) => c.isFileUploadVisible
@@ -163,4 +225,8 @@ class MessageList extends StatelessWidget {
       },
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7

@@ -46,7 +46,11 @@ class DashboardDeskLayout extends StatelessWidget {
                 return GetBuilder<SellerOrderController>(
                   builder: (controller) {
                     final revenue = controller.totalRevenue;
+<<<<<<< HEAD
                     final total = controller.totalOrder;
+=======
+                    final total = controller.allTotalOrders;
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                     final pending = controller.pendingOrders;
                     final completed = controller.completedOrders;
                     
@@ -74,7 +78,11 @@ class DashboardDeskLayout extends StatelessWidget {
                                 Expanded(
                                   child: DashBoardStatCard(
                                     title: 'Total Earnings',
+<<<<<<< HEAD
                                     value:revenue,
+=======
+                                    value: formatNumber(revenue),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                                     accentColor: getColorFromPercentage(85),
                                     progressKey: 'earnings',
                                     arcSubLabel: 'Monthly',
@@ -84,7 +92,11 @@ class DashboardDeskLayout extends StatelessWidget {
                                 Expanded(
                                   child: DashBoardStatCard(
                                     title: 'Total Orders',
+<<<<<<< HEAD
                                     value:total,
+=======
+                                    value: formatNumber(total),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                                     accentColor: getColorFromPercentage(70),
                                     progressKey: 'orders',
                                     arcSubLabel: 'Delivered',
@@ -94,7 +106,11 @@ class DashboardDeskLayout extends StatelessWidget {
                                 Expanded(
                                   child: DashBoardStatCard(
                                     title: 'Pending Orders',
+<<<<<<< HEAD
                                     value: pending,
+=======
+                                    value: formatNumber(pending),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                                     accentColor: getColorFromPercentage(90),
                                     progressKey: 'listings',
                                     arcSubLabel: 'Products',
@@ -104,7 +120,11 @@ class DashboardDeskLayout extends StatelessWidget {
                                 Expanded(
                                   child: DashBoardStatCard(
                                     title: 'Completed Orders',
+<<<<<<< HEAD
                                     value: completed,
+=======
+                                    value: formatNumber(completed),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                                     accentColor: getColorFromPercentage(60),
                                     progressKey: 'messages',
                                     arcSubLabel: 'Delivered',

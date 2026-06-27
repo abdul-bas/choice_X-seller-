@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:choice_x_seller/config/alert_config.dart';
 import 'package:choice_x_seller/core/constants/app_colors.dart';
 import 'package:choice_x_seller/core/dialogs/alert_dialog.dart';
@@ -6,6 +7,14 @@ import 'package:choice_x_seller/screen/product/controller/controller.dart';
 import 'package:choice_x_seller/state/bloc/product_add/product_crud_bloc.dart';
 import 'package:choice_x_seller/state/bloc/product_add/product_crud_event.dart';
 import 'package:choice_x_seller/screen/product/read_product/desktop_view/widgets/text_button.dart';
+=======
+import 'package:choice_x_seller/core/constants/app_colors.dart';
+import 'package:choice_x_seller/models/product_model/product_model.dart';
+import 'package:choice_x_seller/state/bloc/product_add/product_crud_bloc.dart';
+import 'package:choice_x_seller/state/bloc/product_add/product_crud_event.dart';
+import 'package:choice_x_seller/screen/product/read_product/desktop_view/widgets/text_button.dart';
+import 'package:choice_x_seller/screen/product/edit_product/edit_product.dart';
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +24,11 @@ class ProductReadDesktopActionButtons extends StatelessWidget {
     required this.product,
     required this.onDelete,
   });
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
   final ProductModel product;
   final VoidCallback? onDelete;
 
@@ -30,7 +43,14 @@ class ProductReadDesktopActionButtons extends StatelessWidget {
           children: [
             Expanded(
               child: TextButtonWidget(
+<<<<<<< HEAD
                 function: () => ProductLogic.navigateToEdit(context,product),
+=======
+                function: () => showDialog(
+                  context: context,
+                  builder: (_) => EditProductScreen(product: product),
+                ),
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                 fontSize: 7,
                 buttonHight: 20,
                 text: 'Edit',
@@ -41,6 +61,7 @@ class ProductReadDesktopActionButtons extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: TextButtonWidget(
+<<<<<<< HEAD
                  function: () {
   final isLive = product.status == 'Live';
  final status=isLive ? 'In Active' : 'Live';
@@ -60,6 +81,15 @@ class ProductReadDesktopActionButtons extends StatelessWidget {
     ),
   );
 },
+=======
+                function: () {
+                  product.status =
+                      product.status == 'Live' ? 'In Active' : 'Live';
+                  context
+                      .read<ProductCrudBloc>()
+                      .add(UpdateStatus(model: product));
+                },
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
                 text: product.status == 'Live' ? 'In Active' : 'Live',
                 buttonHight: 20,
                 fontSize: 7,

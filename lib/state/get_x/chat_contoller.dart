@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+<<<<<<< HEAD
 import 'package:audio_waveforms/audio_waveforms.dart';
+=======
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
 import 'package:choice_x_seller/models/chat_model/chat_message_model.dart';
 import 'package:choice_x_seller/models/chat_model/chat_model.dart';
 import 'package:choice_x_seller/models/user_model/user_model.dart';
@@ -25,9 +28,15 @@ class ChatController extends GetxController {
   final ScrollController scrollController = ScrollController();
   final TextEditingController searchCtrl = TextEditingController();
   final TextEditingController messageCtrl = TextEditingController();
+<<<<<<< HEAD
   final RecorderController recorderController = RecorderController();
   final List<QueryDocumentSnapshot<Map<String, dynamic>>> messages = [];
    bool isInitialized = false;
+=======
+
+  final List<QueryDocumentSnapshot<Map<String, dynamic>>> messages = [];
+
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
   String search = '';
   UserModel? currentUser;
   String? currentChatId;
@@ -74,6 +83,7 @@ class ChatController extends GetxController {
     update(['messageList']);
   }
 
+<<<<<<< HEAD
  
 
   void initialize() {
@@ -81,6 +91,8 @@ class ChatController extends GetxController {
     notifyChildrens();
   }
 
+=======
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
   void _syncSendState() {
     final next =
         messageCtrl.text.isNotEmpty || fileUpload != null || audioPath != null;

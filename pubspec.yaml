@@ -65,10 +65,13 @@ dependencies:
   audioplayers: ^6.6.0
   firebase_storage: ^13.1.0
   fl_chart: ^1.2.0
+<<<<<<< HEAD
   audio_waveforms: ^2.0.2
   wave_widget: ^0.1.1
   get_storage: ^2.1.1
   shared_preferences: ^2.5.5
+=======
+>>>>>>> 0b4f421725e444ced3453607b12d3161ed67b9f7
  
   
  
